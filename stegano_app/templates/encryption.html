@@ -1,0 +1,29 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+     <title>Encryption - Image Steganography Project</title>
+</head>
+<body>
+{% include "navbar.html" %}
+    <div class="container mt-5">
+        <h1 class="text-center">Encrypt Your Image</h1>
+        <form action="{% url 'encryption' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="image">Select an Image:</label>
+                <input type="file" class="form-control-file" id="image" name="image" required>
+            </div>
+            <div class="form-group">
+                <label for="text">Enter the Text:</label>
+                <textarea class="form-control" id="text" name="text" rows="3" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+
+   {% if message %}
+        <p align="center">{{ message }}</p>
+    {% endif %}
+</body>
+</html>
